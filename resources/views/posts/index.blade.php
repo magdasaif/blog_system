@@ -20,7 +20,14 @@
                     
                 <div class="card-body text-info d-flex justify-content-between align-items-center">
                     <div><p class="card-text"> {{ substr($post->content,0,100)}}..</p></div>
-                    <div><img src="{{$post->getFirstMediaUrl('post_collection','thumb')}}" class="rounded-circle" alt="Post Image"></div>
+                    <div>
+                        @php
+                            $post_image=$post->getFirstMediaUrl('post_collection','thumb');
+                        @endphp
+                        @if(isset($post_image) && !empty($post_image))
+                            <img src="{{$post_image}}" class="rounded-circle" alt="Post Image">
+                        @endif
+                    </div>
                 </div>
             </div>
         @endforeach

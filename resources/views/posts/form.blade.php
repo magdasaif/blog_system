@@ -1,11 +1,11 @@
 <div class="form-group">
   <label for="title">Title <span style="color:red">*</span></label>
-  <input type="input" class="form-control" id="title" placeholder="Enter Title" name="title">
+  <input type="input" class="form-control" id="title" placeholder="Enter Title" name="title" required>
 </div>
 
 <div class="form-group">
   <label for="content">Content <span style="color:red">*</span></label>
-  <textarea class="form-control" id="content" placeholder="Enter Content" name="content"></textarea>
+  <textarea class="form-control" id="content" placeholder="Enter Content" name="content" required></textarea>
 </div>
 
 <div class="form-group">

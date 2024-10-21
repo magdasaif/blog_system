@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Traits\MediaTrait;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -22,9 +23,8 @@ class PostController extends Controller
         return view('posts.create');
     }
     //====================================================
-    public function store(Request $request){
+    public function store(PostRequest $request){
         try {
-        // return $request->all();
             DB::beginTransaction();
             $post= Post::create([
                 'user_id'       => auth()->user()->id,
@@ -32,7 +32,10 @@ class PostController extends Controller
                 'content'       => $request->content,
                 'comments'      => ($request->comments) ?? ''
             ]);
-            $this->storeMediaWithMediaLibrary($request,$post,'image','post_collection');
+            
+            //upload image if user choose it
+            if(isset($request->image)){$this->storeMediaWithMediaLibrary($request,$post,'image','post_collection');}
+            
             DB::commit();
             return redirect('posts')->with('success', 'Added Done Sucessfully');
         } catch (\Exception $e) {
@@ -49,7 +52,7 @@ class PostController extends Controller
         return view('posts.update', compact('post'));
     }
     //====================================================
-    public function update(Request $request, string $id){
+    public function update(PostRequest $request, string $id){
         try {
             DB::beginTransaction();
             Post::find($id)->update([
