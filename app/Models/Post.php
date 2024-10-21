@@ -16,20 +16,23 @@ class Post extends Model implements HasMedia
     //============================================================================================================
     protected $fillable = ['user_id', 'title', 'content', 'comments'];
     //============================================================================================================
-    public function user(): BelongsTo
-    {
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }
     //============================================================================================================
     public function registerMediaConversions(Media $media = null): void{
         $this->addMediaConversion('thumb')
+            ->format('webp')
             ->width(100)
-            ->height(100);
+            ->height(100)
+            ->nonQueued();
+
 
         $this->addMediaConversion('poster')
+            ->format('webp')
             ->width(200)
-            ->height(120);
+            ->height(120)
+            ->nonQueued();
     }
     //============================================================================================================
-
 }

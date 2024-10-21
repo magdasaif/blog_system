@@ -13,8 +13,8 @@ class PostController extends Controller
     use MediaTrait;
     //====================================================
     public function index(){
-        $posts = Post::get();
-        dd($posts);
+        // $posts = Post::get();
+        $posts = auth()->user()->posts()->orderBy('created_at','desc')->get();
         return view('posts.index', compact('posts'));
     }
     //====================================================
