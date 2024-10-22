@@ -54,10 +54,17 @@ class PostController extends Controller
     public function update(PostRequest $request, string $id){
         try {
             DB::beginTransaction();
-            Post::find($id)->update([
+            //************************************************************* */
+            $post=Post::find($id);
+            $post->update([
                 'title'         => $request->title,
                 'content'       => $request->content,
             ]);
+            //************************************************************* */
+            //update image if user update it
+            if(isset($request->image)){$this->UpdateMedia($request,'image','App\Models\Post',$id,'post_collection');}
+            // if(isset($request->image)){$this->UpdateMedia($request,$post,'image','post_collection','image','App\Model\Post',$id);}
+            //************************************************************* */
             DB::commit();
             return redirect('posts')->with('success', 'Updated Done Sucessfully');
         } catch (\Exception $e) {

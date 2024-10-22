@@ -13,7 +13,7 @@
                         {{$post->title}}
                     </div>
                     <div>
-                        <a href="#" class="text-white mr-3"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('posts.edit',$post->id)}}" class="text-white mr-3"><i class="fas fa-edit"></i></a>
                         <a href="#" class="text-white delete-action"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </div>
