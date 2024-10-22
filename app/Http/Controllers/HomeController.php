@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $posts = Post::orderBy('created_at','desc')->paginate(10);
+    public function index(Request $request){
+        $query = Post::orderBy('created_at','desc');
+        if (isset($request->search) && !empty($request->search)) {
+            $query->whereLike('title', $request->search)
+                ->orWhereLike('content', $request->search);
+        }
+        $posts=$query->paginate(10);
         $title = 'All Posts';
         return view('posts.index', compact('posts','title'));
     }
