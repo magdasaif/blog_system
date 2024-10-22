@@ -6,7 +6,7 @@
 <div class="container">
     <h2>{{$title}}</h2>
     <br>
-    @if(count($posts)==0)
+    @if(auth()->check() && count($posts)==0)
     <div class="card mb-3">
         <div class="card-header">
             No Posts Added Yet !
