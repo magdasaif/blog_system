@@ -54,5 +54,11 @@
         @include('delete_modal')
         <!--  -->
     @endforeach
+    
+      <!-- Pagination Links -->
+      <div class="d-flex justify-content-center mt-4">
+        {{ $posts->links() }}
+    </div>
+
 </div>
 @endsection

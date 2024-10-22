@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        //retreive all posts
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
         $title = 'All Posts';
         return view('posts.index', compact('posts','title'));
     }
