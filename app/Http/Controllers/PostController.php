@@ -15,8 +15,10 @@ class PostController extends Controller
     //====================================================
     public function index(){
         // $posts = Post::get();
-        $posts = auth()->user()->posts()->orderBy('created_at','desc')->get();
-        return view('posts.index', compact('posts'));
+        $auth_details=auth()->user();
+        $posts = $auth_details->posts()->orderBy('created_at','desc')->get();
+        $title = $auth_details->name . ' Posts';
+        return view('posts.index', compact('posts','title'));
     }
     //====================================================
     public function create(){
