@@ -23,15 +23,15 @@ class Post extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void{
         $this->addMediaConversion('thumb')
             ->format('webp')
-            ->width(100)
+            ->width(120)
             ->height(100)
             ->nonQueued();
 
 
         $this->addMediaConversion('poster')
             ->format('webp')
-            ->width(200)
-            ->height(120)
+            ->width(700)
+            // ->height(120)
             ->nonQueued();
     }
     //============================================================================================================

@@ -45,8 +45,9 @@ class PostController extends Controller
         }
     }
     //====================================================
-    public function show(string $id) {
-        //
+    public function show(Post $post) {
+        $post_image=$post->getFirstMediaUrl('post_collection','poster');
+        return view('posts.show',compact('post','post_image'));
     }
     //====================================================
     public function edit(Post $post){

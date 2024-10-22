@@ -16,5 +16,7 @@
   <input type="file" class="form-control" id="image" name="image">
 </div>
 
-<button type="submit" class="btn btn-success">Save</button>
-<button type="button" class="btn btn-danger" onclick="window.location.href='/posts'">Cancel</button>
+<center>
+  <button type="submit" class="btn btn-success">Save</button>
+  <button type="button" class="btn btn-danger" onclick="window.location.href='/posts'">Cancel</button>
+</center>

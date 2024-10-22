@@ -23,12 +23,13 @@
                 <div>
                     {{$post->title}}
                 </div>
-                @if(auth()->check() && auth()->user()->id == $post->user_id)
-                    <div>
+                <div>
+                    <a href="{{route('posts.show',$post->id)}}" class="text-white mr-3"><i class="fas fa-eye"></i></a>
+                    @if(auth()->check() && auth()->user()->id == $post->user_id)
                         <a href="{{route('posts.edit',$post->id)}}" class="text-white mr-3"><i class="fas fa-edit"></i></a>
                         <a class="text-white" data-toggle="modal" data-target="#deleteModal_{{$post->id}}" title="delete post"><i class="fas fa-trash-alt"></i></a>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
             <div class="card-body text-info d-flex justify-content-between align-items-center">
                 <div>
