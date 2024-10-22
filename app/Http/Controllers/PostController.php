@@ -30,7 +30,6 @@ class PostController extends Controller
                 'user_id'       => auth()->user()->id,
                 'title'         => $request->title,
                 'content'       => $request->content,
-                'comments'      => ($request->comments) ?? ''
             ]);
             
             //upload image if user choose it
@@ -58,7 +57,6 @@ class PostController extends Controller
             Post::find($id)->update([
                 'title'         => $request->title,
                 'content'       => $request->content,
-                'comments'      => ($request->comments) ?? ''
             ]);
             DB::commit();
             return redirect('posts')->with('success', 'Updated Done Sucessfully');

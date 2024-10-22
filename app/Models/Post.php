@@ -14,7 +14,7 @@ class Post extends Model implements HasMedia
     //============================================================================================================
     use HasFactory, InteractsWithMedia;
     //============================================================================================================
-    protected $fillable = ['user_id', 'title', 'content', 'comments'];
+    protected $fillable = ['user_id', 'title', 'content'];
     //============================================================================================================
     public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
