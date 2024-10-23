@@ -12,5 +12,6 @@ Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
 //======================================== auth routes =======================================================
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('/posts', PostController::class)->except('show');
+    Route::post('post/{post}/add-comment', [PostController::class,'addComment'])->name('post.comment'); 
 });
 //=============================================================================================================

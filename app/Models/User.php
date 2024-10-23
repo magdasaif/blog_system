@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use BeyondCode\Comments\Comment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +36,10 @@ class User extends Authenticatable
     //============================================================================================================
     public function posts(): HasMany{
         return $this->hasMany(Post::class);
+    }
+    //============================================================================================================
+    public function comments(): HasMany{
+        return $this->hasMany(Comment::class);
     }
     //============================================================================================================
 }

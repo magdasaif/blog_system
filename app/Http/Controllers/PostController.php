@@ -46,8 +46,9 @@ class PostController extends Controller
     }
     //====================================================
     public function show(Post $post) {
-        $post_image=$post->getFirstMediaUrl('post_collection','poster');
-        return view('posts.show',compact('post','post_image'));
+        $post_image = $post->getFirstMediaUrl('post_collection','poster');
+        $comments   = $post->comments()->paginate(5);
+        return view('posts.show',compact('post','post_image','comments'));
     }
     //====================================================
     public function edit(Post $post){
@@ -72,7 +73,7 @@ class PostController extends Controller
             return redirect('posts')->with('success', 'Updated Done Sucessfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('errors', $e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
     //====================================================
@@ -82,4 +83,15 @@ class PostController extends Controller
         return redirect('posts')->with('success', 'Deleted Done Sucessfully');
     }
     //====================================================
+    public function addComment(Request $request,Post $post){
+        try {
+            DB::beginTransaction();
+            $post->comment($request->comment);
+            DB::commit();
+            return redirect()->back()->with('success', 'Added Done Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+    }
 }

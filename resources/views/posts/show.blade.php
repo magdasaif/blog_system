@@ -26,7 +26,9 @@
                     <hr>
                     <p class="card-text"> {{ $post->content}}</p>
                 </div>
-             
+                <!-- =========================== start comments part========================================== -->
+                @include('posts.comments')
+                <!-- =========================== end comments part========================================== -->
             </div>
         </div>
         <!-- Modal -->
