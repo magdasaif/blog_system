@@ -18,5 +18,5 @@
 
 <center>
   <button type="submit" class="btn btn-success">Save</button>
-  <a href="{{route('posts.create')}}" class="btn btn-danger" >Cancel</a>
+  <a href="{{route('posts.index')}}" class="btn btn-danger" >Cancel</a>
 </center>
