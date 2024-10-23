@@ -77,8 +77,19 @@ class PostController extends Controller
     }
     //====================================================
     public function destroy(Post $post){
-        $post->delete();
-        return redirect('posts')->with('success', 'Deleted Done Sucessfully');
+        try {
+            DB::beginTransaction();
+            //************************************************************* */
+            //remove post comments,then delete post
+            $post->comments()->delete();
+            $post->delete();
+            //************************************************************* */
+            DB::commit();
+            return redirect('posts')->with('success', 'Deleted Done Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
     //====================================================
     public function addComment(Request $request,Post $post){
