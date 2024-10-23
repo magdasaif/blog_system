@@ -47,25 +47,5 @@ trait MediaTrait
          return $media;
       }
    }
-   #===============================================multi=============================================================#
-   public function StoreMultiMediaWithMediaLibrary($model,$request, $media_input_name,$collection_name){
-      foreach ($request->file($media_input_name, []) as $key => $file){
-         $model->addMedia($file)->toMediaCollection($collection_name);
-      }
-   }
-   #==========================================================================================================#
-   public function CheckMultiFileExistMediaWithMediaLibrary($model_name,$model_id,$model_collection_name){
-      return $CheckImageExist =DB::table('media')->where(
-         [
-            ['model_type'      , $model_name],
-            ['model_id'        , $model_id],
-            ['collection_name' , $model_collection_name],
-         ])->get();
-   }
-   #==========================================================================================================#
-   public function DeleteMultiMedia($media_ids){
-      $media = Media::whereIn('uuid', $media_ids)->delete();
-      return $media;
-   }
    #==========================================================================================================#
 }

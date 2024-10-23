@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.alerts')
-<br>
-<div class="container">
+    @include('layouts.alerts')
+    <br>
+    <div class="container">
         <div class="card border-info mb-3">
             <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                 <div>
@@ -31,12 +31,12 @@
                 <!-- =========================== end comments part========================================== -->
             </div>
         </div>
-        <!-- Modal -->
+        <!-- =========================== start delete Modal part========================================== -->
         @php
             $route='posts';
             $id=$post->id
         @endphp
         @include('delete_modal')
-        <!--  -->
-</div>
+        <!-- =========================== end delete Modal part========================================== -->
+    </div>
 @endsection

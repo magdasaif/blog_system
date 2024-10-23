@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.alerts')
+  @include('layouts.alerts')
   <br>
+  <!-- =========================== start create part========================================== -->
   <div class="container">
     <div class="card border-info mb-3">
       <div class="card-header bg-info text-white">
@@ -16,4 +17,5 @@
       </div>
     </div>
   </div>
+  <!-- =========================== end create part========================================== -->
 @endsection

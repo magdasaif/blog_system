@@ -3,6 +3,7 @@
 @section('content')
   @include('layouts.alerts')
   <br>
+  <!-- =========================== start update part========================================== -->
   <div class="container">
     <div class="card border-info mb-3">
       <div class="card-header bg-info text-white">
@@ -17,4 +18,5 @@
       </div>
     </div>
   </div>
+  <!-- =========================== end create part========================================== -->
 @endsection

@@ -14,10 +14,9 @@ class PostController extends Controller
     use MediaTrait;
     //====================================================
     public function index(){
-        // $posts = Post::get();
-        $auth_details=auth()->user();
-        $posts = $auth_details->posts()->orderBy('created_at','desc')->paginate(10);
-        $title = $auth_details->name . ' Posts';
+        $auth_details   = auth()->user();
+        $posts          = $auth_details->posts()->orderBy('created_at','desc')->paginate(10);
+        $title          = $auth_details->name . ' Posts';
         return view('posts.index', compact('posts','title'));
     }
     //====================================================
@@ -28,15 +27,16 @@ class PostController extends Controller
     public function store(PostRequest $request){
         try {
             DB::beginTransaction();
+            //************************************************************* */
             $post= Post::create([
                 'user_id'       => auth()->user()->id,
                 'title'         => $request->title,
                 'content'       => $request->content,
             ]);
-            
+             //************************************************************* */
             //upload image if user choose it
             if(isset($request->image)){$this->storeMediaWithMediaLibrary($request,$post,'image','post_collection');}
-            
+            //************************************************************* */
             DB::commit();
             return redirect('posts')->with('success', 'Added Done Sucessfully');
         } catch (\Exception $e) {
@@ -67,7 +67,6 @@ class PostController extends Controller
             //************************************************************* */
             //update image if user update it
             if(isset($request->image)){$this->UpdateMedia($request,'image','App\Models\Post',$id,'post_collection');}
-            // if(isset($request->image)){$this->UpdateMedia($request,$post,'image','post_collection','image','App\Model\Post',$id);}
             //************************************************************* */
             DB::commit();
             return redirect('posts')->with('success', 'Updated Done Sucessfully');
@@ -78,7 +77,6 @@ class PostController extends Controller
     }
     //====================================================
     public function destroy(Post $post){
-    // return $post;
         $post->delete();
         return redirect('posts')->with('success', 'Deleted Done Sucessfully');
     }

@@ -19,7 +19,7 @@
                 @if(auth()->check())
                     <div class="card-body ">
                         <h5 class="card-title">Let's add new post... </h5>
-                        <center><button type="button" class="btn btn-success" onclick="window.location.href='/posts/create'">Add Post</button></center>
+                        <center> <a href="{{route('posts.create')}}" class="btn btn-info" >Add Post</a></center>
                     </div>
                 @endif
             </div>
@@ -33,7 +33,7 @@
                         {{$post->title}}
                     </div>
                     <div>
-                        <a href="{{route('posts.show',$post->id)}}" class="text-white mr-3"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('post.show',$post->id)}}" class="text-white mr-3"><i class="fas fa-eye"></i></a>
                         @if(auth()->check() && auth()->user()->id == $post->user_id)
                             <a href="{{route('posts.edit',$post->id)}}" class="text-white mr-3"><i class="fas fa-edit"></i></a>
                             <a class="text-white" data-toggle="modal" data-target="#deleteModal_{{$post->id}}" title="delete post"><i class="fas fa-trash-alt"></i></a>
