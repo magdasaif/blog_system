@@ -27,7 +27,8 @@ To serve the project locally, you should follow below steps:
     7.  Creat db and add its credinational in the .env file
     8.  Add mail configuration in the .env file
     9.  php artisan migrate
-    10. php artisan serve 
+    10. php artisan storage:link
+    11. php artisan serve 
 ``` 
 
 ## Used Packages
